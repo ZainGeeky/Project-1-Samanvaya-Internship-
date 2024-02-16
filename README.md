@@ -1,1 +1,1 @@
-# Project-1--Samanvaya-Internship-
+# Project-1-Samanvaya-Internship-
