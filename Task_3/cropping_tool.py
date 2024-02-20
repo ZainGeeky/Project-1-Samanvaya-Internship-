@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img=cv2.imread("images/bird.jpg")
+img=cv2.imread("/Users/muhammedzainuddinmoosa/Desktop/Project-1--Samanvaya-Internship-/Task_3/road.jpg")
 
 flag= False
 ix=-1

@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 img = cv.imread('Task_One/Resources/Photos/park.jpg')
 cv.imshow('Park', img)
 cv.waitKey(0)
-plt.imshow(img)
-plt.show()
+# plt.imshow(img)
+# plt.show()
 
 # BGR to Grayscale
 gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
