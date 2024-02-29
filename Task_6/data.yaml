@@ -1,0 +1,7 @@
+train: /content/drive/MyDrive/Samanvaya/Task_6_Instance_Segmentation/cell_data/train/images
+val: /content/drive/MyDrive/Samanvaya/Task_6_Instance_Segmentation/cell_data/valid/images
+test: /content/drive/MyDrive/Samanvaya/Task_6_Instance_Segmentation/cell_data/test/images
+
+nc: 1
+names: ['cell']
+
