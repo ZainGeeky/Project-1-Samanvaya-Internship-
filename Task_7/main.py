@@ -4,7 +4,7 @@ from tracker import *
 # Create tracker object
 tracker = EuclideanDistTracker()
 
-cap = cv2.VideoCapture("video (1080p).mp4")
+cap = cv2.VideoCapture("highway.mp4")
 
 # Object detection from Stable camera
 object_detector = cv2.createBackgroundSubtractorMOG2(history=100, varThreshold=40)
@@ -14,7 +14,7 @@ while True:
     height, width, _ = frame.shape
     # print(height,width)
     # Extract Region of interest
-    roi = frame[300: 1080,750: 1200]
+    roi = frame[320: 720,500: 1080]
 
     # 1. Object Detection
     mask = object_detector.apply(roi)
