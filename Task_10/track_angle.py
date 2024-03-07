@@ -12,7 +12,8 @@ model_path = os.path.join('.', 'Task_10', 'runs', 'detect', 'train', 'weights', 
 model = YOLO(model_path)
 threshold = 0.5
 
-common_point = None  # Initialize the common point
+common_point_1 = None  # Initialize the first common point
+common_point_2 = (300, 300)  # Initialize the second common point (replace with desired values)
 
 # Radius of the tire in meters
 tire_radius = 0.3  # Assuming the tire radius is 0.3 meters
@@ -46,23 +47,27 @@ while True:
             center_x = int((x1 + x2) / 2)
             center_y = int((y1 + y2) / 2)
 
-            # Assign the first detected point as the common point
-            if common_point is None:
-                common_point = (center_x, center_y)
+            # Assign the first detected point as the first common point
+            if common_point_1 is None:
+                common_point_1 = (center_x, center_y)
 
-            # Rotate the second point around the common point
+            # Rotate the second point around the first common point
             rotate_angle_deg = math.degrees(angle_rad)
             rotate_distance = 150  # Adjust the distance between the common point and the rotating point
-            point2_x = int(common_point[0] + rotate_distance * math.cos(math.radians(rotate_angle_deg)))
-            point2_y = int(common_point[1] + rotate_distance * math.sin(math.radians(rotate_angle_deg)))
+            point2_x = int(common_point_1[0] + rotate_distance * math.cos(math.radians(rotate_angle_deg)))
+            point2_y = int(common_point_1[1] + rotate_distance * math.sin(math.radians(rotate_angle_deg)))
 
-            # Draw center point, common point, and rotating point
+            # Draw center point, first common point, second common point, and rotating point
             cv2.circle(frame, (center_x, center_y), 5, (0, 0, 255), -1)  # Center point
-            cv2.circle(frame, common_point, 5, (255, 0, 0), -1)  # Common point
+            cv2.circle(frame, common_point_1, 5, (255, 0, 0), -1)  # First common point
+            cv2.circle(frame, common_point_2, 5, (255, 0, 0), -1)  # Second common point
             cv2.circle(frame, (point2_x, point2_y), 5, (255, 0, 0), -1)  # Rotating point
 
-            # Draw lines between common point and rotating point
-            cv2.line(frame, common_point, (point2_x, point2_y), (255, 0, 0), 2)
+            # Draw lines between common points, center point, and rotating point
+            cv2.line(frame, common_point_1, (point2_x, point2_y), (255, 0, 0), 2)  # Line to rotating point
+            # cv2.line(frame, common_point_2, (point2_x, point2_y), (0, 255, 0), 2)  # Line to rotating point
+            cv2.line(frame, common_point_1, (center_x, center_y), (0, 0, 255), 2)  # Line to center point
+            cv2.line(frame, common_point_2, (center_x, center_y), (0, 255, 0), 2)  # Line to rotating point
 
             cv2.putText(frame, results.names[int(class_id)].upper(), (int(x1), int(y1 - 10)),
                         cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 255, 0), 3, cv2.LINE_AA)
