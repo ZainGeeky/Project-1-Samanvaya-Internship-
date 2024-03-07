@@ -6,7 +6,7 @@ import cv2
 VIDEOS_DIR = os.path.join('.','Task_5', 'Videos')
 
 
-video_path = os.path.join(VIDEOS_DIR, 'test.mp4')
+video_path = os.path.join(VIDEOS_DIR, 'tire.mp4')
 video_path_out = '{}_out.mp4'.format(video_path)
 
 cap = cv2.VideoCapture(video_path)
@@ -67,3 +67,4 @@ while ret:
 cap.release()
 out.release()
 cv2.destroyAllWindows()
+
